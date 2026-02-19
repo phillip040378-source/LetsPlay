@@ -48,7 +48,7 @@ const BoldHero = () => {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="text-slate-300 text-lg md:text-xl mb-8 leading-relaxed max-w-lg"
                         >
-                            Crafts, themed event days, outdoor play and snacks — all within Davyhulme Primary School.
+                            Crafts, themed event days, outdoor play and snacks, all within Davyhulme Primary School.
                             Where every child is known by name.
                         </motion.p>
 

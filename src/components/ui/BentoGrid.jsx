@@ -59,7 +59,7 @@ export const BentoGrid = () => {
                         iconBg="bg-amber-50"
                         iconColor="text-amber-600"
                         title="Themed Event Days"
-                        description="Halloween costumes, St George's Day celebrations, Christmas parties — we make every occasion special."
+                        description="Halloween costumes, St George's Day celebrations, Christmas parties. We make every occasion special."
                         badge="Popular"
                         delay={0.1}
                     />
@@ -69,7 +69,7 @@ export const BentoGrid = () => {
                         iconBg="bg-orange-50"
                         iconColor="text-orange-600"
                         title="Snacks Included"
-                        description="A healthy breakfast to start the day and an afterschool snack to refuel — always included in your session."
+                        description="A healthy breakfast to start the day and an afterschool snack to refuel. Always included in your session."
                         delay={0.2}
                     />
 
@@ -78,7 +78,7 @@ export const BentoGrid = () => {
                         iconBg="bg-green-50"
                         iconColor="text-green-600"
                         title="Flexible Hours"
-                        description="Breakfast Club from 7:30 to 8:45 and Afterschool Club from 3:00 to 6:00 — designed to fit around your working day."
+                        description="Breakfast Club from 7:30 to 8:45 and Afterschool Club from 3:00 to 6:00, designed to fit around your working day."
                         delay={0.1}
                     />
 
@@ -96,7 +96,7 @@ export const BentoGrid = () => {
                         iconBg="bg-purple-50"
                         iconColor="text-purple-600"
                         title="SEND Support"
-                        description="We can support children with specific requirements including SEND. Please reach out to discuss your child's needs — we're here to help."
+                        description="We can support children with specific requirements including SEND. Please reach out to discuss your child's needs. We're here to help."
                         delay={0.3}
                     />
                 </div>

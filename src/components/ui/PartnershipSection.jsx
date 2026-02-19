@@ -16,10 +16,10 @@ const PartnershipSection = () => {
                                 Based at Davyhulme Primary School
                             </h2>
                             <p className="text-slate-500 text-lg leading-relaxed mb-6">
-                                We operate in close partnership with Davyhulme Primary School in Urmston. This isn't just a venue — it's a genuine collaboration. The school trusts us to look after their pupils, and we follow their term dates, their safeguarding policies, and their values.
+                                We operate in close partnership with Davyhulme Primary School in Urmston. This isn't just a venue, it's a genuine collaboration. The school trusts us to look after their pupils, and we follow their term dates, their safeguarding policies, and their values.
                             </p>
                             <p className="text-slate-500 text-lg leading-relaxed mb-8">
-                                Children move seamlessly from their school day into our club. They stay in a familiar, safe environment with staff who know the school community. For parents, it means one simple drop-off and collection point — no extra travel, no extra stress.
+                                Children move seamlessly from their school day into our club. They stay in a familiar, safe environment with staff who know the school community. For parents, it means one simple drop-off and collection point with no extra travel and no extra stress.
                             </p>
 
                             <div className="grid grid-cols-2 gap-4">
@@ -55,8 +55,29 @@ const PartnershipSection = () => {
                                 <div className="mt-8 pt-6 border-t border-white/10">
                                     <p className="text-sm text-slate-400 mb-2">School Term Dates</p>
                                     <p className="text-slate-200 leading-relaxed">
-                                        We follow Davyhulme Primary's term dates. Our Holiday Club runs during school holidays — check our booking system for available dates.
+                                        We follow Davyhulme Primary's term dates. Our Holiday Club runs during school holidays. Check our booking system for available dates.
                                     </p>
+                                </div>
+
+                                <div className="mt-6 pt-6 border-t border-white/10">
+                                    <p className="text-sm text-slate-400 mb-2">Ofsted Registration</p>
+                                    <div className="flex items-center gap-4">
+                                        <div className="bg-white/10 border border-white/10 rounded-xl px-4 py-2 text-center">
+                                            <span className="text-xs text-slate-400 block">URN</span>
+                                            <span className="text-white font-bold text-lg">502418</span>
+                                        </div>
+                                        <div>
+                                            <p className="text-white font-semibold">Inspection Status: Met</p>
+                                            <a
+                                                href="https://reports.ofsted.gov.uk/provider/16/502418"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-red-600 hover:text-red-400 text-sm font-medium transition-colors"
+                                            >
+                                                View Ofsted Report &rarr;
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="mt-6 flex items-center gap-2">
