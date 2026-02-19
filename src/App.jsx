@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import StickyHeader from '@/components/ui/StickyHeader';
 import VibrantHero from '@/components/ui/VibrantHero';
 import { BentoGrid } from '@/components/ui/BentoGrid';
+import StatsSection from '@/components/ui/StatsSection';
 import Footer from './components/Footer';
 
 // Placeholder Pages for now
 const Home = () => (
   <main className="min-h-screen bg-slate-50">
     <VibrantHero />
+    <StatsSection />
     <BentoGrid />
   </main>
 );
