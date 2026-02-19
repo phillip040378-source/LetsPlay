@@ -1,23 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
+import StickyHeader from '@/components/ui/StickyHeader';
+import VibrantHero from '@/components/ui/VibrantHero';
+import { BentoGrid } from '@/components/ui/BentoGrid';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Blog from './pages/Blog';
-import Staff from './pages/Staff';
+
+// Placeholder Pages for now
+const Home = () => (
+  <main className="min-h-screen bg-slate-50">
+    <VibrantHero />
+    <BentoGrid />
+  </main>
+);
+
+const Blog = () => <div className="pt-32 text-center text-4xl font-bold text-slate-800">News & Activities (Coming Soon)</div>;
+const Staff = () => <div className="pt-32 text-center text-4xl font-bold text-slate-800">Meet the Team (Coming Soon)</div>;
 
 function App() {
   return (
     <Router>
-      <div className="App flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/staff" element={<Staff />} />
-          </Routes>
-        </main>
+      <div className="App flex flex-col min-h-screen bg-slate-50">
+        <StickyHeader />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/staff" element={<Staff />} />
+        </Routes>
+
         <Footer />
       </div>
     </Router>
