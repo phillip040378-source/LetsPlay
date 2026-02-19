@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-  --color-primary: #001f3f; /* Dark Navy Blue */
-  --color-accent: #ff4136; /* Bright Red */
+  --color-primary: #001f3f;
+  /* Dark Navy Blue */
+  --color-accent: #ff4136;
+  /* Bright Red */
   --color-text: #333333;
   --color-bg: #f4f4f4;
   --font-body: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -24,7 +24,12 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--color-primary);
 }
