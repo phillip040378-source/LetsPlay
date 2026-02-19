@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, Heart, Star, Shield, Smile } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowRight, Heart, Star, Shield } from 'lucide-react';
 import rainbowImage from '../../assets/LetsPlayv2.jpg';
-import { TypewriterEffect } from "../ui/Typewriter";
+import { Typewriter } from "../ui/Typewriter";
 
 const VibrantHero = () => {
-    const words = [
-        { text: "Seen", className: "text-blue-500" },
-        { text: "as", className: "text-slate-700" },
-        { text: "Special", className: "text-purple-500" },
-        { text: "Valued", className: "text-pink-500" },
-        { text: "Safe", className: "text-green-500" },
-        { text: "Happy", className: "text-yellow-500" },
-    ];
-
-    // Simpler words array for the strict Typewriter component structure if needed, 
-    // but we can also just use the headline directly.
-    // Let's use a custom animated headline for maximum control over the "Playful" vibe.
-
     return (
-        <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50 pt-20">
-            {/* 1. Animated Mesh Gradient Background (The "Relaxed" Vibe) */}
+        <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#f8fafc] pt-20">
+            {/* Animated Mesh Gradient Background */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-200/40 rounded-full blur-[100px] animate-blob" />
                 <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-200/40 rounded-full blur-[100px] animate-blob animation-delay-2000" />
@@ -29,7 +16,7 @@ const VibrantHero = () => {
 
             <div className="container mx-auto px-4 z-10 relative flex flex-col items-center text-center">
 
-                {/* 2. Floating Badge (Premium Touch) */}
+                {/* Floating Badge */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -40,7 +27,7 @@ const VibrantHero = () => {
                     <span>Your Child's Happy Place</span>
                 </motion.div>
 
-                {/* 3. Main Hero Image (The Anchor) */}
+                {/* Main Hero Image */}
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -55,26 +42,38 @@ const VibrantHero = () => {
                     />
                 </motion.div>
 
-                {/* 4. Typewriter Headline */}
-                <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
+                {/* Headline */}
+                <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4 tracking-tight leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                     Where Every Child Is <br className="hidden md:block" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">
                         Known & Loved
                     </span>
                 </h1>
 
-                <p className="text-lg md:text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed">
+                {/* Typewriter subtitle */}
+                <div className="text-2xl md:text-3xl font-bold mb-6 h-12" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    <Typewriter
+                        text={["Seen as Special", "Valued", "Safe", "Happy"]}
+                        speed={80}
+                        deleteSpeed={40}
+                        waitTime={2000}
+                        loop={true}
+                        className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-amber-500"
+                    />
+                </div>
+
+                <p className="text-lg md:text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
                     We create a safe, vibrant environment where your children aren't just looked after—they are <span className="font-semibold text-blue-600">seen</span>, <span className="font-semibold text-pink-600">valued</span>, and <span className="font-semibold text-amber-600">inspired</span>.
                 </p>
 
-                {/* 5. Feature Pills (Quick Trust Signals) */}
+                {/* Feature Pills */}
                 <div className="flex flex-wrap justify-center gap-4 mb-10">
                     <FeaturePill icon={<Shield className="w-4 h-4 text-green-500" />} text="Safe Environment" />
-                    <FeaturePill icon={<Heart className="w-4 h-4 text-red-500" />} text="Caring Staff" />
+                    <FeaturePill icon={<Heart className="w-4 h-4 text-red-600" />} text="Caring Staff" />
                     <FeaturePill icon={<Star className="w-4 h-4 text-yellow-500" />} text="Fun Activities" />
                 </div>
 
-                {/* 6. Primary Action (Gradient Button) */}
+                {/* Primary CTA */}
                 <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -84,6 +83,7 @@ const VibrantHero = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-violet-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-blue-500/25 transition-all"
+                        style={{ fontFamily: "'Outfit', sans-serif" }}
                     >
                         Book a Session Now <ArrowRight className="w-5 h-5" />
                     </a>
@@ -95,7 +95,7 @@ const VibrantHero = () => {
 };
 
 const FeaturePill = ({ icon, text }) => (
-    <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100 text-slate-700 font-medium text-sm">
+    <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100 text-slate-700 font-medium text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>
         {icon}
         {text}
     </div>
