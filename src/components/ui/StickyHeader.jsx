@@ -32,9 +32,9 @@ const StickyHeader = () => {
                     {/* Brand Name (Text Logo) - Always Visible & Safe */}
                     <Link to="/" className="flex items-center gap-2">
                         <span className={cn(
-                            "font-heading font-bold text-2xl tracking-tighter transition-colors",
+                            "font-bold text-2xl tracking-tighter transition-colors",
                             scrolled ? "text-slate-900" : "text-slate-800"
-                        )}>
+                        )} style={{ fontFamily: "'Outfit', sans-serif" }}>
                             Let's Play
                             <span className="text-blue-500">.</span>
                         </span>

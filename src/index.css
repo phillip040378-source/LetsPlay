@@ -2,64 +2,19 @@
 @source "../src";
 
 @theme {
-  /* Brand Colors - Available as Tailwind utilities (e.g. bg-navy-900, text-red-600) */
+  /* Brand Colors */
   --color-navy-900: #001f3f;
   --color-red-600: #ff4136;
 
-  /* Fonts */
+  /* Fonts - generates font-heading and font-body utilities */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  /* Custom Animation */
+  /* Custom Animation - generates animate-blob utility */
   --animate-blob: blob 7s infinite;
 }
 
-:root {
-  /* Core palette */
-  --color-text: #0f172a;
-  --color-bg: #f8fafc;
-
-  /* Font aliases */
-  --font-body: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
-}
-
-/* ---- Base Resets ---- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  color: var(--color-text);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-/* ---- Custom Animations ---- */
+/* ---- Blob Animation Keyframes ---- */
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -84,4 +39,11 @@ button {
 
 .animation-delay-4000 {
   animation-delay: 4s;
+}
+
+/* ---- Minimal Global Styles (Don't fight Tailwind) ---- */
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
