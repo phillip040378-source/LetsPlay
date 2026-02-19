@@ -1,95 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    setIsMenuOpen(false); // Close menu on route change
+  }, [location]);
+
   return (
-    <header style={styles.header}>
-      <div style={styles.container}>
-        <div style={styles.logo}>Let's Play (NW) Ltd</div>
-        
-        <button style={styles.mobileMenuBtn} onClick={toggleMenu}>
-          {isMenuOpen ? '✕' : '☰'}
+    <header className="bg-white py-4 shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Link to="/" className="font-heading text-2xl font-bold text-navy-900">
+          Let's Play
+        </Link>
+
+        <button className="md:hidden text-navy-900 focus:outline-none" onClick={toggleMenu}>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        <nav style={{...styles.nav, ...(isMenuOpen ? styles.navOpen : {})}}>
-          <a href="#home" style={styles.link} onClick={() => setIsMenuOpen(false)}>Home</a>
-          <a href="#about" style={styles.link} onClick={() => setIsMenuOpen(false)}>About</a>
-          <a href="#inclusion" style={styles.link} onClick={() => setIsMenuOpen(false)}>Inclusion</a>
-          <a href="#ofsted" style={styles.link} onClick={() => setIsMenuOpen(false)}>Ofsted</a>
-          <a href="#contact" style={styles.contactBtn} onClick={() => setIsMenuOpen(false)}>Contact Us</a>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link to="/" className="text-slate-600 hover:text-red-600 font-medium transition-colors">Home</Link>
+          <Link to="/blog" className="text-slate-600 hover:text-red-600 font-medium transition-colors">News & Activities</Link>
+          <Link to="/staff" className="text-slate-600 hover:text-red-600 font-medium transition-colors">Meet the Team</Link>
+          <a
+            href="https://letsplay.magicbooking.co.uk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-red-600/20 hover:shadow-red-600/30 flex items-center"
+          >
+            Book Now <ArrowRight className="ml-2 h-4 w-4" />
+          </a>
         </nav>
+
+        {/* Mobile Nav */}
+        <div className={`absolute top-full left-0 w-full bg-white shadow-lg flex flex-col p-4 space-y-4 md:hidden transition-all duration-300 origin-top ${isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'}`}>
+          <Link to="/" className="text-slate-600 font-medium hover:text-red-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/blog" className="text-slate-600 font-medium hover:text-red-600" onClick={() => setIsMenuOpen(false)}>News & Activities</Link>
+          <Link to="/staff" className="text-slate-600 font-medium hover:text-red-600" onClick={() => setIsMenuOpen(false)}>Meet the Team</Link>
+          <a href="https://letsplay.magicbooking.co.uk/" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-red-600 text-white px-5 py-3 rounded-xl font-medium">
+            Book Now
+          </a>
+        </div>
       </div>
     </header>
   );
 };
-
-const styles = {
-  header: {
-    backgroundColor: '#ffffff',
-    padding: '1rem 0',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-  },
-  container: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logo: {
-    fontFamily: 'var(--font-heading)',
-    fontSize: '1.5rem',
-    fontWeight: '700',
-    color: 'var(--color-primary)',
-  },
-  mobileMenuBtn: {
-    display: 'none', // Hidden on desktop, shown in media query via CSS usually, but here inline styles are tricky for media queries. 
-    // Ideally we use CSS modules or styled-components, but for simplicity I'll rely on a basic implementation or just inline styles + assumption of desktop first and responsive tweaks if I can add a stylesheet.
-    // Given the constraints, I'll add a simple style tag or just rely on the global CSS for media queries if I were to use classes. 
-    // To keep it simple with inline styles, I might miss media queries. 
-    // BETTER APPROACH: Use standard CSS classes defined in index.css or a module.
-    // I will use className and define styles in index.css for responsiveness to be safe.
-    background: 'none',
-    border: 'none',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-  },
-  nav: {
-    display: 'flex',
-    gap: '2rem',
-    alignItems: 'center',
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'var(--color-text)',
-    fontWeight: '500',
-    transition: 'color 0.3s ease',
-  },
-  contactBtn: {
-    backgroundColor: 'var(--color-accent)',
-    color: '#fff',
-    padding: '0.6rem 1.2rem',
-    borderRadius: '25px',
-    textDecoration: 'none',
-    fontWeight: '600',
-    transition: 'background-color 0.3s ease',
-    display: 'inline-block',
-  }
-};
-
-// I will rewrite this to use classes for responsiveness in a follow-up step or right now if I can.
-// Let's stick to a simple structure and maybe add a CSS file for Header if needed, or put everything in index.css.
-// For now, I'll use inline styles but acknowledge the mobile menu limitation without media queries.
-// Actually, I can use window.matchMedia in React but that's overkill.
-// I'll make it responsive by adding classes.
 
 export default Header;

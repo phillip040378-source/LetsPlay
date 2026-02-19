@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -30,10 +31,17 @@ const Footer = () => {
                     <div style={styles.column}>
                         <h3 style={styles.title}>Quick Links</h3>
                         <div style={styles.links}>
-                            <a href="#home" style={styles.link}>Home</a>
-                            <a href="#about" style={styles.link}>About</a>
-                            <a href="#inclusion" style={styles.link}>Inclusion</a>
-                            <a href="#ofsted" style={styles.link}>Ofsted</a>
+                            <Link to="/" style={styles.link}>Home</Link>
+                            <Link to="/blog" style={styles.link}>News & Activities</Link>
+                            <Link to="/staff" style={styles.link}>Meet the Team</Link>
+                            <a
+                                href="https://letsplay.magicbooking.co.uk/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ ...styles.link, color: 'var(--color-accent)', fontWeight: 'bold' }}
+                            >
+                                Book Now
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -65,6 +73,7 @@ const styles = {
         color: '#fff',
         fontSize: '1.3rem',
         marginBottom: '1.5rem',
+        fontFamily: 'var(--font-heading)',
     },
     address: {
         lineHeight: '1.8',
@@ -80,6 +89,7 @@ const styles = {
     link: {
         color: '#ccc',
         transition: 'color 0.3s ease',
+        textDecoration: 'none',
     },
     copyright: {
         textAlign: 'center',

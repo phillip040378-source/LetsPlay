@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-primary: #001f3f; /* Dark Navy Blue */
   --color-accent: #ff4136; /* Bright Red */
