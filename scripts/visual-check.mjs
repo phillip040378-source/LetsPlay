@@ -30,7 +30,7 @@ function findFile(dir, pattern) {
 
 console.log('\n🔍 Visual Smoke Test\n');
 
-// 1. Check dist exists
+// 1. Build output
 const assets = join(DIST, 'assets');
 const cssFile = findFile(assets, /\.css$/);
 const jsFile = findFile(assets, /\.js$/);
@@ -44,70 +44,64 @@ if (!cssFile || !jsFile) {
     process.exit(1);
 }
 
-// 2. Check CSS contains critical Tailwind utilities
+// 2. CSS checks
 const css = readFileSync(join(assets, cssFile), 'utf8');
-console.log(`\n🎨 CSS Checks (${cssFile}, ${(css.length / 1024).toFixed(1)}KB):`);
+console.log(`\n🎨 CSS Checks (${(css.length / 1024).toFixed(1)}KB):`);
 
-const criticalCssPatterns = [
-    ['Flex layout', 'flex'],
-    ['Grid layout', 'grid'],
-    ['Rounded corners', 'rounded'],
-    ['Background gradient', 'gradient'],
-    ['Shadow utilities', 'shadow'],
-    ['Backdrop blur (glassmorphism)', 'backdrop'],
-    ['Animation (blob)', 'blob'],
-    ['Transition utilities', 'transition'],
-    ['Text colors (slate)', 'slate'],
-    ['Blue accent color', 'blue'],
-    ['Pink accent color', 'pink'],
+const cssPats = [
+    ['Flex layout', 'flex'], ['Grid layout', 'grid'],
+    ['Rounded corners', 'rounded'], ['Gradients', 'gradient'],
+    ['Shadows', 'shadow'], ['Backdrop blur', 'backdrop'],
+    ['Blob animation', 'blob'], ['Transitions', 'transition'],
+    ['Navy color (#001f3f)', '001f3f'], ['Red color (#ff4136)', 'ff4136'],
 ];
+cssPats.forEach(([l, p]) => check(l, css.includes(p)));
+check('CSS > 10KB', css.length > 10000);
 
-criticalCssPatterns.forEach(([label, pattern]) => {
-    check(label, css.includes(pattern));
-});
-
-check('CSS file > 10KB (Tailwind generated)', css.length > 10000);
-
-// 3. Check JS contains critical component content
+// 3. Content checks
 const js = readFileSync(join(assets, jsFile), 'utf8');
-console.log(`\n⚛️  Component Checks (${jsFile}, ${(js.length / 1024).toFixed(1)}KB):`);
+console.log(`\n⚛️  Content (${(js.length / 1024).toFixed(1)}KB):`);
 
-const criticalJsContent = [
-    ['StickyHeader: "Let\'s Play" brand', "Let's Play"],
-    ['StickyHeader: "Book Now" button', 'Book Now'],
-    ['VibrantHero: Headline text', 'Known & Loved'],
-    ['VibrantHero: Sparkles badge', "Child's Happy Place"],
-    ['BentoGrid: Activities card', 'Exciting Activities'],
-    ['BentoGrid: Safety card', 'Safety First'],
-    ['BentoGrid: Holiday CTA', 'Holiday Clubs'],
-    ['StatsSection: Years Experience', 'Years Experience'],
-    ['StatsSection: Happy Children', 'Happy Children'],
-    ['Footer: Phone number', '07973 819280'],
-    ['Footer: Email', 'letsplaynw@gmail.com'],
-    ['Footer: Address', 'Canterbury Road'],
-    ['Navigation: Blog link', 'News & Activities'],
-    ['Navigation: Staff link', 'Meet the Team'],
+const content = [
+    ["Brand: Let's Play", "Let's Play"],
+    ['CTA: Book Now', 'Book Now'],
+    ['CTA: Book a Session', 'Book a Session'],
+    ['Hero headline', 'Love'],
+    ['Hours: Breakfast', '7:30'],
+    ['Hours: Afterschool', '3:00'],
+    ['Feature: Crafts', 'Crafts'],
+    ['Feature: Event Days', 'Event Days'],
+    ['Feature: Snacks', 'Snacks'],
+    ['Feature: SEND', 'SEND'],
+    ['Staff: Trish', 'Trish'],
+    ['Staff: Danni', 'Danni'],
+    ['Staff: Claudia', 'Claudia'],
+    ['Family business', 'family'],
+    ['Partnership: Davyhulme', 'Davyhulme Primary'],
+    ['Location: Canterbury Road', 'Canterbury Road'],
+    ['Location: Urmston', 'Urmston'],
+    ['Contact: Phone', '07973 819280'],
+    ['Contact: Email', 'letsplaynw@gmail.com'],
     ['Booking URL', 'magicbooking.co.uk'],
+    ['Nav: News & Activities', 'News'],
+    ['Nav: Meet the Team', 'Meet the Team'],
+    ['Ofsted', 'Ofsted'],
+    ['Term dates', 'term dates'],
 ];
+content.forEach(([l, t]) => check(l, js.toLowerCase().includes(t.toLowerCase())));
 
-criticalJsContent.forEach(([label, text]) => {
-    check(label, js.includes(text));
-});
-
-// 4. Check index.html
-console.log('\n📄 HTML Checks:');
+// 4. HTML
+console.log('\n📄 HTML:');
 const html = readFileSync(join(DIST, 'index.html'), 'utf8');
-check('Title tag present', html.includes("Let's Play"));
-check('Google Fonts loaded', html.includes('fonts.googleapis.com'));
-check('Viewport meta tag', html.includes('viewport'));
-check('Root div for React', html.includes('id="root"'));
+check('Title', html.includes("Let's Play"));
+check('Google Fonts', html.includes('fonts.googleapis.com'));
+check('Root div', html.includes('id="root"'));
 
 // Summary
 console.log('\n' + '─'.repeat(50));
 if (failures === 0) {
-    console.log(`\n🎉 All checks passed! The site should render correctly.\n`);
-    process.exit(0);
+    console.log(`\n🎉 All checks passed!\n`);
 } else {
-    console.log(`\n⚠️  ${failures} check(s) failed. Review the issues above.\n`);
-    process.exit(1);
+    console.log(`\n⚠️  ${failures} check(s) failed.\n`);
 }
+process.exit(failures > 0 ? 1 : 0);

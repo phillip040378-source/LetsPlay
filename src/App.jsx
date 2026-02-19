@@ -1,38 +1,48 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StickyHeader from '@/components/ui/StickyHeader';
-import VibrantHero from '@/components/ui/VibrantHero';
+import BoldHero from '@/components/ui/BoldHero';
 import { BentoGrid } from '@/components/ui/BentoGrid';
-import StatsSection from '@/components/ui/StatsSection';
+import PartnershipSection from '@/components/ui/PartnershipSection';
 import Footer from './components/Footer';
 
 // Placeholder Pages for now
 const Home = () => (
-  <main className="min-h-screen bg-slate-50">
-    <VibrantHero />
-    <StatsSection />
+  <main className="min-h-screen">
+    <BoldHero />
     <BentoGrid />
+    <PartnershipSection />
   </main>
 );
 
-const Blog = () => <div className="pt-32 text-center text-4xl font-bold text-slate-800">News & Activities (Coming Soon)</div>;
-const Staff = () => <div className="pt-32 text-center text-4xl font-bold text-slate-800">Meet the Team (Coming Soon)</div>;
+const Blog = () => (
+  <div className="min-h-screen bg-slate-50 pt-24 px-4">
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-4xl font-bold text-navy-900 mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>News & Activities</h1>
+      <p className="text-slate-500 text-lg">Coming soon — updates on our latest events and activities.</p>
+    </div>
+  </div>
+);
+
+const Staff = () => (
+  <div className="min-h-screen bg-slate-50 pt-24 px-4">
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-4xl font-bold text-navy-900 mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>Meet the Team</h1>
+      <p className="text-slate-500 text-lg">Coming soon — get to know the people behind Let's Play.</p>
+    </div>
+  </div>
+);
 
 function App() {
   return (
-    <Router>
-      <div className="App flex flex-col min-h-screen bg-slate-50">
-        <StickyHeader />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/staff" element={<Staff />} />
-        </Routes>
-
-        <Footer />
-      </div>
-    </Router>
+    <BrowserRouter>
+      <StickyHeader />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/staff" element={<Staff />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
